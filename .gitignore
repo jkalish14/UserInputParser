@@ -1,0 +1,7 @@
+# Created by pytest automatically.
+
+.idea/*
+
+UserInputParser.egg-info
+venv
+setup.cfg

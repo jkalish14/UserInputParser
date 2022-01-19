@@ -1,0 +1,9 @@
+{
+  "account" : "Wells Fargo",
+  "account_type" : "checkings",
+  "balance" : "$10000",
+  "previous_interest_rates" : [5000, 6000, 7000, 8000],
+  "interest_rate" : 0.2,
+  "account_number" : "123456789"
+
+}
