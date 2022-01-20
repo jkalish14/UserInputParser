@@ -17,6 +17,10 @@
 <img alt="GitHub" src="https://img.shields.io/github/license/jkalish14/UserInputParser?style=plastic">
 </p>
 
+<p align="center">
+    <a target="_blank" href="https://jkalish14.github.io/UserInputParser/">Documentation</a>
+  </p>
+
 ---
 
 # Features
