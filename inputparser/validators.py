@@ -1,6 +1,6 @@
 
 import re
-from typing import Union, Callable
+from typing import Union, Callable, Tuple
 
 
 def in_list(val: list, allowable: list, case_sensitive: bool = False) -> bool:
@@ -45,7 +45,7 @@ def is_positive(val: (int, float)) -> bool:
     return is_real(val) and val >= 0
 
 
-def in_range(val: (int, float), allowable_range: tuple[(int, float)], inclusive: bool = True) -> bool:
+def in_range(val: (int, float), allowable_range: Tuple, inclusive: bool = True) -> bool:
     """
     Check if the provided value is within the allowable range
 
