@@ -1,5 +1,5 @@
 UserInputParser Package
-===================
+========================
 
 Suggested import method::
 
