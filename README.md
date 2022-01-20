@@ -1,14 +1,34 @@
 
+<br />
+
+<div align="center">
+<h1>UserInputParser</h1>
+
+</div>
+
+<br />
+<div align="center">
+  <b>A python module to parse user's input and provide helpful error messages on failure</b>
+</div>
+<br />
+
+
+<p align="center">
+<img alt="GitHub" src="https://img.shields.io/github/license/jkalish14/UserInputParser?style=plastic">
+</p>
+
+---
 
 # Features
+
 ## Powerful
 
 Type checking is included by default. If you need something more complex, that's supported too.
 
-Evaluate elements of a list to ensure they meet your specific conditions
+Evaluate elements of a list to ensure they meet your specific conditions:
 ```python
 from inputparser import *
-
+ 
 InputParser(default_val=[], 
             allowable_types=(int, float), 
             constraint_func=are_valid_elements, 
@@ -39,23 +59,17 @@ parser = InputParser(default_val="$0",
                      constraint_args={"str_starts_with": "$"})
 ```
 
-## Helpful Error Messages
+see more [example use-cases](./examples)
 
-As a user there is nothing more frustrating than not knowing why there is an error.
-Or worse, not knowing why the program did not work as expected.
-
-UserInputParser constructs helpful error messages that the developers can display to the user.
-```
-User value provided for previous_interest_rates in ./examples/user_input_example.json is invalid: 
-Provided value of '[5000, 6000, 7000, 8000]' did not meet the constraints enforced by: are_valid_elements(). 
-	Arguments passed to constraint function: 
-		- element_constraint : in_range 
-		- constraint_args : {'allowable_range': (0.0, 0.1)} 
-
-Using default value of []
-```
 
 # Installation
 ```
 pip install UserInputParser
 ```
+
+Then import the package
+```python
+from inputparser import *
+```
+
+and get to checkin'

@@ -3,14 +3,14 @@ import re
 from typing import Union, Callable
 
 
-def in_list(val, allowable, case_sensitive: bool = False) -> bool:
+def in_list(val: list, allowable: list, case_sensitive: bool = False) -> bool:
     """
     Check if provided value is in the allowable list
 
-    Args:
-        val : value to check. Can be of any type
-        allowable: list (or single element) to compare the val field to
-        case_sensitive: boolean flag for use when comparing strings
+    :param val: value to check
+    :param allowable: list of arguments that are allowable
+    :param case_sensitive: flag to enforce case sensitivity when the val is a string
+    :return: boolean indicating if the val was in the allowable list
     """
 
     # Force any single element allowable args to be a list
@@ -25,16 +25,17 @@ def in_list(val, allowable, case_sensitive: bool = False) -> bool:
     return val in allowable
 
 
-def is_real(val) -> bool:
+def is_real(val: (int, float)) -> bool:
     """
     Check if the provided argument is real
+
     :param val: value to check
     :return: boolean indicating value is real
     """
     return False if isinstance(val, complex) else True
 
 
-def is_positive(val) -> bool:
+def is_positive(val: (int, float)) -> bool:
     """
     Check if the provided argument is real and positive
 
@@ -44,17 +45,17 @@ def is_positive(val) -> bool:
     return is_real(val) and val >= 0
 
 
-def in_range(val, allowable_range: tuple, inclusive: bool = True) -> bool:
+def in_range(val: (int, float), allowable_range: tuple[(int, float)], inclusive: bool = True) -> bool:
     """
-    Check if the provided val is within the specified range
+    Check if the provided value is within the allowable range
 
-    Args:
-        val : int or float to check
-        allowable_range : tuple specifying the min and max value
-        inclusive : boolean flag to specify if the value can be equal to
-            the provided min and max range. Default of True means if the value
-            is equal to the min or max, the function returns True
+    :param val: value to check
+    :param allowable_range: iterator specifying the min and max allowable values
+    :param inclusive: flag to specify if the value can be equal to the provided min and max range.
+        Default of True means if the value is equal to the min or max, the function returns true
+    :return: boolean flag indicating the value is within the range
     """
+
     max_val = max(allowable_range)
     min_val = min(allowable_range)
 
@@ -71,14 +72,15 @@ def in_range(val, allowable_range: tuple, inclusive: bool = True) -> bool:
 
 def are_valid_elements(vals: list, element_constraint: Callable, args=[], constraint_args={}) -> bool:
     """
-    Check if the elements of a list conform to the provided constraint
+    Check if the elements of a list conform ot the provided constraint function
 
-    Args:
-        vals : list of values to iterate through and check
-        element_constraint : function reference used to check each element of the list
-        constraint_args : dictionary of keyword arguments to pass to the element
-            constraint function. Default to empty dict.
+    :param vals: list of values to check against the constraint
+    :param element_constraint: function handle used to check each element
+    :param args: positional arguments to pass into the element_constraint function
+    :param constraint_args: keyword arguments to pass into the element_constraint function
+    :return: boolean flag indicating each element in the list meets the constraint
     """
+
     does_pass = isinstance(vals, list)
     for val in vals:
         does_pass &= element_constraint(val, *args, **constraint_args)
@@ -86,12 +88,13 @@ def are_valid_elements(vals: list, element_constraint: Callable, args=[], constr
     return does_pass
 
 
-def matches_reg_ex(val, reg_ex: str):
+def matches_reg_ex(val: str, reg_ex: str) -> bool:
     """
     Check if the provided argument matches the provided regular expression
 
     :param val: value to check
     :param reg_ex: regular expression string to compare the value to
+    :return: boolean flag indicating a match
     """
     return bool(re.fullmatch(reg_ex, val))
 

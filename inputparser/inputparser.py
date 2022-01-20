@@ -5,26 +5,35 @@ from inputparser.validators import *
 
 class UserInputError(Exception):
     """
-    Error message that gets raised when a user input is invalid
+    Error that gets raised when a user input is invalid
     """
 
     def __init__(self, message: str = ""):
+        """
+        Create an instance of the error
+
+        :param message: message describing the error
+        """
         self.message = message
         super().__init__(message)
 
 
 class InputParser:
+    """
+    InputParser class enables the checking of user's inputs while constructing helpful
+    error messages in the case the input is invalid.
+    """
 
-    def __init__(self, default_val, allowable_types: Union[type, Tuple], constraint_func: Callable = None,
+    def __init__(self, default_val: Any, allowable_types: Union[type, Tuple], constraint_func: Callable = None,
                  constraint_args=None):
         """
         Create a new User Input Checker to ensure inputs from the user are valid.
 
         :param default_val: If there is an error with the user's input, this is the value the field will default to
-        :param allowable_types: type, or tuple of types that the input argument can be
-        :param constraint_func: function reference that will be used to validate the user's input
+        :param allowable_types: input argument can be
+        :param constraint_func: Function handle that will be used to validate the user's input
         :param constraint_args: dictionary of arguments to be passed to the logic_check function. Dictionary
-                keys must match logic_check function keyword arguments.
+            keys must match logic_check function keyword arguments.
         """
         if constraint_args is None:
             constraint_args = {}
@@ -39,12 +48,18 @@ class InputParser:
 
     @property
     def value(self) -> Any:
+        """
+        When the user's input is valid, this field returns the user's argument.
+        When the user's input is invalid, it returns the default argument
+
+        :return: user's input if valid, default value if invalid
+        """
         return self.__value
 
     @property
-    def default(self):
+    def default(self) -> Any:
         """
-        Get the default argument provided by the user
+        Get the default argument provided
 
         :return: specified default argument
         """
@@ -54,14 +69,16 @@ class InputParser:
     def valid(self) -> bool:
         """
         Get the boolean flag indicating if the user's input was valid.
-        Note, this field is None until is_valid() is called
+
+        .. note::
+            This field is None until is_valid() is called
 
         :return: boolean flag indicating valid user argument
         """
         return self.__valid
 
     @property
-    def user_arg(self):
+    def user_arg(self) -> Any:
         """
         Get the original argument provided by the user
 
@@ -72,7 +89,7 @@ class InputParser:
     @property
     def error_str(self) -> str:
         """
-        Get the warning string that is constructed when a user's input is invalid
+        Get the error string that is constructed when a user's input is invalid
 
         :return: error string
         """
@@ -92,9 +109,13 @@ class InputParser:
         if not supress:
             raise UserInputError(self.__error_str)
 
-    def is_valid(self, user_arg, supress_error: bool = False) -> bool:
+    def is_valid(self, user_arg: Any, supress_error: bool = False) -> bool:
         """
-        Take the provided user_arg and run it through the logic_check function
+        Validate the user's argument, if invalid create the error string and
+        optionally raise an error.
+
+        :param user_arg: argument from the user
+        :param supress_error: boolean flag to supress the raising of an error on invalid input
         """
 
         # Save the provided user arg in case it is needed for error messages

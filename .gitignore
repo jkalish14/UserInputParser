@@ -1,6 +1,7 @@
 # Created by pytest automatically.
 
 .idea/*
+build/
 
 UserInputParser.egg-info
 venv
