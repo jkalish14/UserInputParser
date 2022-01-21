@@ -18,8 +18,20 @@ def test_boolean():
 def test_is_in_list():
     default_value = 10
     parser = InputParser(default_value, int, in_list, {"allowable": [10, 20, 30, 40]})
+    parser2 = InputParser(default_value, int, in_list, {"allowable": 20})
 
     test_cases = [(20, True), (22, False), ("22", False)]
+    for case in test_cases:
+        evaluate_test_case(parser, case[0], case[1])
+        evaluate_test_case(parser2, case[0], case[1])
+
+
+
+def test_is_real():
+    default_value = 10
+    parser = InputParser(0, (int, float, complex), is_real)
+
+    test_cases = [(20, True), (-3, True), (3j, False)]
     for case in test_cases:
         evaluate_test_case(parser, case[0], case[1])
 
@@ -44,9 +56,9 @@ def test_in_range_noninclusive():
 
 def test_in_range_inclusive():
     default_value = 0.125
-    parser = InputParser(default_value, (float, int), in_range, {"allowable_range": (0, 1), "inclusive": True})
+    parser = InputParser(default_value, (float, int, complex), in_range, {"allowable_range": (0, 1), "inclusive": True})
 
-    test_cases = [(1, True), (1.0, True), (0.0, True), (-1, False), (0.2, True), ("12", False)]
+    test_cases = [(1, True), (1.0, True), (0.0, True), (-1, False), (0.2, True), ("12", False), (2j, False)]
     for case in test_cases:
         evaluate_test_case(parser, case[0], case[1])
 
@@ -103,3 +115,42 @@ def test_lambda():
     for case in test_cases:
         evaluate_test_case(parser, case[0], case[1])
 
+
+def test_user_input_error():
+    error = None
+    usr_arg = -0.2
+    validator_function = is_positive
+    parser = InputParser(1, (float, int), validator_function)
+
+    try:
+        val = parser.is_valid(usr_arg)
+    except UserInputError as e:
+        error = e
+
+    passing = True
+    passing &= isinstance(error, UserInputError)
+    passing &= str(usr_arg) in error.message
+    passing &= validator_function.__name__ in error.message
+    assert passing
+
+def test_properties():
+    failing_arg = -0.2
+    passing_arg = 3
+    default_arg = 1
+    validator_function = is_positive
+    parser = InputParser(default_arg, (float, int), validator_function)
+
+    parser.is_valid(failing_arg, supress_error=True)
+
+    passing = True
+    passing &= parser.user_arg == failing_arg
+    passing &= parser.default == default_arg
+    passing &= parser.value == default_arg
+    passing &= parser.valid is False
+    passing &= len(parser.error_str) > 0
+
+    parser.is_valid(passing_arg)
+
+    passing &= parser.value == passing_arg
+
+    assert passing

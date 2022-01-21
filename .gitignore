@@ -6,3 +6,5 @@ build/
 UserInputParser.egg-info
 venv
 setup.cfg
+
+*.coverage
