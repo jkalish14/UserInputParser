@@ -19,6 +19,7 @@
 <a href="https://github.com/jkalish14/UserInputParser/actions/workflows/Test.yml"><img src="https://github.com/jkalish14/UserInputParser/actions/workflows/Test.yml/badge.svg"/>
 <img src="https://sonarcloud.io/api/project_badges/measure?project=jkalish14_UserInputParser&metric=sqale_rating"/>
 <img src="https://sonarcloud.io/api/project_badges/measure?project=jkalish14_UserInputParser&metric=reliability_rating"/>
+<img src="https://sonarcloud.io/api/project_badges/measure?project=jkalish14_UserInputParser&metric=coverage"/>
 </p>
 
 <p align="center">
