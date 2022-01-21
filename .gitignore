@@ -7,4 +7,5 @@ UserInputParser.egg-info
 venv
 setup.cfg
 
-*.coverage
+test/.coverage
+test/coverage.xml

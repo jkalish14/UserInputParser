@@ -1,4 +1,4 @@
 [run]
 omit =
-    ./test/*
-    setup.py
+    test_parser.py
+    *setup.py
