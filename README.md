@@ -14,11 +14,11 @@
 
 
 <p align="center">
-<img src="<img alt="GitHub" src="https://img.shields.io/github/license/jkalish14/UserInputParser">
+<img src="https://img.shields.io/github/license/jkalish14/UserInputParser"/>
 <a href='https://userinputparser.readthedocs.io/en/latest/?badge=latest'><img src='https://readthedocs.org/projects/userinputparser/badge/?version=latest' alt='Documentation Status' />
-<a href="https://github.com/jkalish14/UserInputParser/actions/workflows/test.yml"><img src="https://github.com/jkalish14/UserInputParser/actions/workflows/test.yml/badge.svg">
-<img src="https://sonarcloud.io/api/project_badges/measure?project=jkalish14_UserInputParser&metric=sqale_rating">
-<img src="https://sonarcloud.io/api/project_badges/measure?project=jkalish14_UserInputParser&metric=reliability_rating">
+<a href="https://github.com/jkalish14/UserInputParser/actions/workflows/Test.yml"><img src="https://github.com/jkalish14/UserInputParser/actions/workflows/Test.yml/badge.svg"/>
+<img src="https://sonarcloud.io/api/project_badges/measure?project=jkalish14_UserInputParser&metric=sqale_rating"/>
+<img src="https://sonarcloud.io/api/project_badges/measure?project=jkalish14_UserInputParser&metric=reliability_rating"/>
 </p>
 
 <p align="center">
