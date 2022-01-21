@@ -29,11 +29,14 @@ class InputParser:
         """
         Create a new User Input Checker to ensure inputs from the user are valid.
 
-        :param default_val: If there is an error with the user's input, this is the value the field will default to
-        :param allowable_types: input argument can be
-        :param constraint_func: Function handle that will be used to validate the user's input
-        :param constraint_args: dictionary of arguments to be passed to the logic_check function. Dictionary
-            keys must match logic_check function keyword arguments.
+        :param default_val: if there is an error with the user's input, this is the value the value field will default to
+        :param allowable_types: the expected type(s) of the user's input
+        :param constraint_func: function handle that will be used to validate the user's input
+        :param constraint_args: dictionary of arguments to be passed to the constraint_func function
+
+            .. note::
+
+            dictionary keys must match constraint_func function keyword arguments.
         """
         if constraint_args is None:
             constraint_args = {}
@@ -111,7 +114,7 @@ class InputParser:
 
     def is_valid(self, user_arg: Any, supress_error: bool = False) -> bool:
         """
-        Validate the user's argument, if invalid create the error string and
+        Validate the user's argument. If invalid create the error string and
         optionally raise an error.
 
         :param user_arg: argument from the user

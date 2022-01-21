@@ -7,13 +7,13 @@ with open(path.join(this_directory, './README.md'), encoding='utf-8') as f:
 setup(
     name='UserInputParser',
     packages=find_packages(),
-    version='v0.1',
+    version='v0.1.0',
     license='MIT',
     description='Parse user input to ensure it meets the specified constraints',
     long_description=long_description,
     long_description_content_type='text/markdown',
     author='Jake Kalish',
     author_email='jkalish14@gmail.com',
-    url='placeholder',  # Could be github or website
+    url='https://github.com/jkalish14/UserInputParser',
     keywords=['Parser', 'User', 'Input'],  # Keywords
 )

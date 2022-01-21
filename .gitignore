@@ -1,11 +1,20 @@
 # Created by pytest automatically.
 
-.idea/*
-build/
 
-UserInputParser.egg-info
+## Folders
+# environment
 venv
-setup.cfg
 
+# IDE
+.idea
+.vscode
+
+# Distrobution files
+dist
+UserInputParser.egg-info
+
+## Files
+setup.cfg
 test/.coverage
 test/coverage.xml
+

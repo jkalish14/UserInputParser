@@ -23,14 +23,46 @@
 </p>
 
 <p align="center">
-    <a target="_blank" href="https://userinputparser.readthedocs.io/en/latest/">Documentation</a>
+    <a target="_blank" href="https://userinputparser.readthedocs.io/en/latest/">Read The Documentation</a>
   </p>
 
 ---
 
+# Usage
+
+## Installation
+```
+pip install UserInputParser
+```
+
+Then import the package
+
+```python
+from inputparser import *
+```
+This will make InputParser avalaible as well as all the natively supported validator functions.
+
+## Basic Example
+```python
+from inputparser import *
+
+parser = InputParser("", str, in_list, {"allowable" : ["a", "b", "c", "d"]})
+
+valid = parser.is_valid(input("Select an option: a, b, c, d"))
+
+```
+and on error...
+```
+inputparser.inputparser.UserInputError: Provided value of 'e' did not meet the constraints enforced by: in_list(). 
+	Arguments passed to constraint function: 
+		- allowable : ['a', 'b', 'c', 'd'] 
+```
+
+see more [example use-cases](https://github.com/jkalish14/UserInputParser/tree/master/examples)
+
 # Features
 
-## Powerful
+## Extensible
 
 Type checking is included by default. If you need something more complex, that's supported too.
 
@@ -53,13 +85,7 @@ from inputparser import *
 
 # Define your own constraint function
 def custom_constraint(val, str_starts_with: str):
-    returnValue = True
-    if len(val) < len(str_starts_with):
-        returnValue = False
-    elif val[0:len(str_starts_with)] == str_starts_with:
-        returnValue = True
-
-    return returnValue
+    return True if val[0:len(str_starts_with)] == str_starts_with else False
 
 # Create the object 
 parser = InputParser(default_val="$0", 
@@ -68,17 +94,23 @@ parser = InputParser(default_val="$0",
                      constraint_args={"str_starts_with": "$"})
 ```
 
-see more [example use-cases](./examples)
 
+## Helpful Error Messages
 
-# Installation
+As a user, not knowing where or why your input was wrong is aweful. Or worse, having the program produce wrong
+results because the user entered a percentage instead of a decimal - but didn't error.
 ```
-pip install UserInputParser
+User value provided for interest_rate in ./examples/user_input_example.json is invalid: 
+Provided value of '0.2' did not meet the constraints enforced by: in_range(). 
+	Arguments passed to constraint function: 
+		- allowable_range : (0.0, 0.1) 
+		- inclusive : True 
+
+Using default value of 0.0
 ```
 
-Then import the package
-```python
-from inputparser import *
-```
+This even works for custom functions.
 
-and get to checkin'
+## Lightweight
+
+UserInputParser has no dependencies to keep your programs fast.
